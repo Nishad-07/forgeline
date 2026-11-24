@@ -1,0 +1,16 @@
+# Equivalent cost table, in USD per 1 million tokens.
+#
+# The real bill for this project is $0: Gemini runs on the free tier and Ollama runs locally.
+# These numbers show what a run *would* cost at paid list prices, so cost can be tracked and compared.
+# They are illustrative; update them from the provider's pricing page before quoting them.
+
+models:
+  gemini-3.5-flash-lite: {input: 0.10, output: 0.40}
+  gemini-3.1-flash-lite: {input: 0.10, output: 0.40}
+  gemini-3.6-flash: {input: 0.30, output: 2.50}
+
+# Fallbacks when a model is not listed above.
+providers:
+  gemini: {input: 0.30, output: 2.50}
+  ollama: {input: 0.0, output: 0.0}   # local inference: no per-token charge
+  mock: {input: 0.0, output: 0.0}

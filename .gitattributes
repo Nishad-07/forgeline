@@ -1,0 +1,5 @@
+# Keep LF line endings everywhere so agent-generated diffs are clean on Windows.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

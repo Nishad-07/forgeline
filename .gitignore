@@ -1,0 +1,29 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets
+.env
+
+# Runtime data (runs, worktrees, SQLite DBs, LLM cache)
+workspace/
+data/
+*.sqlite
+*.db
+
+# Dashboard
+dashboard/node_modules/
+dashboard/dist/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/

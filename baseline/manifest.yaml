@@ -1,0 +1,19 @@
+# Maps requirement ids to their hidden golden tests and human reference implementation.
+REQ-101:
+  golden_tests: golden_tests/test_partial_refund_golden.py
+  reference: reference/REQ-101
+REQ-102:
+  golden_tests: golden_tests/test_refund_audit_golden.py
+  reference: reference/REQ-102
+REQ-103:
+  golden_tests: golden_tests/test_idempotency_golden.py
+  reference: reference/REQ-103
+REQ-104:
+  golden_tests: golden_tests/test_void_payment_golden.py
+  reference: reference/REQ-104
+REQ-105:
+  golden_tests: golden_tests/test_list_payments_golden.py
+  reference: reference/REQ-105
+REQ-106:
+  golden_tests: golden_tests/test_daily_limit_golden.py
+  reference: reference/REQ-106

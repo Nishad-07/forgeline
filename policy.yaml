@@ -1,0 +1,43 @@
+# Autonomy policy: the single place that decides where agent autonomy stops.
+# The hash of this file is written to every run's audit log.
+
+version: 1
+
+autonomy:
+  max_dev_attempts: 3            # developer <-> QA fix loops before escalating to a human
+  max_reconcile_rounds: 1        # architect/developer disagreement rounds before escalating
+  max_repair_attempts: 2         # re-prompts for malformed LLM output, per provider
+  security_autofix_attempts: 1   # developer attempts to fix a blocking security finding
+  max_request_changes: 2         # human "request changes" loops before the run must be re-planned
+
+# Decisions agents may never take on their own.
+human_required_for:
+  - clarification          # ambiguous requirement: the analyst asks, a human answers
+  - merge                  # merging the agent branch into main
+  - deploy                 # (mock) deployment
+  - security_override      # accepting a blocking security finding, requires a justification
+  - design_deadlock        # architect and developer still disagree after reconciliation
+  - retry_budget_exhausted # tests still failing after max_dev_attempts
+
+security:
+  block_on: [critical, high]     # severities that block release
+  scan_scope: changed_lines      # pre-existing findings are reported but do not block
+
+scope:
+  # Paths (relative to the target repository) no agent may create, modify or delete.
+  protected_paths:
+    - ".git/**"
+    - ".github/**"
+    - "tests/golden/**"
+    - "pyproject.toml"
+    - "**/.env"
+  max_files_changed: 6
+  max_file_bytes: 60000
+
+sandbox:
+  command_timeout_s: 120
+  allowed_commands: [pytest, ruff, bandit]
+
+llm:
+  failover: true
+  analyst_ambiguity_threshold: 0.5   # above this, the analyst must ask clarifying questions
